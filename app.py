@@ -1,43 +1,3 @@
-# from flask import Flask, request, jsonify
-# import pandas as pd
-# from sklearn.ensemble import RandomForestRegressor
-# from sklearn.feature_extraction.text import CountVectorizer
-
-# app = Flask(__name__)
-
-# # Load the dataset
-# dataset = pd.read_csv('/Users/dev_cs/Documents/desireapp/banks.csv')
-
-# # Preprocess the data
-# dataset['Years of Experience'] = dataset['Years of Experience'].astype(str)  # Convert to string
-# X = dataset['Education'] + ' ' + dataset['Years of Experience'] + ' ' + dataset['Subjects Taught'] + ' ' + dataset['Certificates']
-# y = dataset['Rating']
-
-# # Vectorize the resume text
-# vectorizer = CountVectorizer()
-# X_vectorized = vectorizer.fit_transform(X)
-
-# # Train the model
-# model = RandomForestRegressor(n_estimators=100, random_state=42)
-# model.fit(X_vectorized, y)
-
-# @app.route('/rate_teachers', methods=['POST'])
-# def rate_teachers():
-#     data = request.get_json()
-#     # name = newcv = data.get('name') # Get the JSON payload
-    
-#     newcv = data.get('newcv')  # Extract the 'newcv' data from the payload
-    
-#     # Preprocess the example resume
-#     resume_vectorized = vectorizer.transform([newcv])
-
-#     # Predict the rating
-#     rating_prediction = model.predict(resume_vectorized)
-    
-#     return jsonify({'rating': rating_prediction[0]})
-
-# if __name__ == '__main__':
-#     app.run()
 from flask import Flask, request, jsonify
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
@@ -46,16 +6,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import joblib  # For model persistence
 import requests
-# Import LlamaAPI class from llamaapi module
-from llamaapi import LlamaAPI
-from openai import OpenAI
+
 
 
 app = Flask(__name__)
 
 
 
-print(response.choices[0].message.content)
+# print(response.choices[0].message.content)
 # Load the dataset
 dataset = pd.read_csv('/Users/dev_cs/Documents/desireapp/banks.csv')
 
@@ -91,11 +49,6 @@ def rate_teachers():
     newcv = data['newcv']  # Extract the 'newcv' data from the payload
     
     try:
-       
-    
-       
-
-
         resume_vectorized = vectorizer.transform([newcv])
         rating_prediction = model.predict(resume_vectorized)
         
